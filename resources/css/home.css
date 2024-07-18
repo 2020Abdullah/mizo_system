@@ -29,6 +29,21 @@ ul li {
     background-position: center center;
     background-size: cover;
 }
+.loading {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
 
 /* header style */
 header {
@@ -43,6 +58,7 @@ header .bg-theme-orange {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    position: relative;
 }
 .logo {
     color: #fff;
@@ -54,6 +70,7 @@ header .bg-theme-orange {
     align-items: center;
     gap: 10px;
 }
+
 .menu li {
     font-size: 25px;
     background-color: var(--bs-green);
@@ -183,13 +200,16 @@ header .bg-theme-orange {
 }
 .card-food-content .info {
     font-size: 20px;
-    font-weight: 500;
+    font-weight: normal;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 .card-food-price-table ul {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 30px;
+    margin-left: 2rem;
 }
 .card-food-price-table ul li {
     font-size: 20px;

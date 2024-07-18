@@ -1,5 +1,10 @@
 <template>
     <section class="category">
+        <div class="loading" v-if="loading == true">
+            <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
         <div class="table-action">
             <div class="search">
                 <input type="text" class="form-control" v-model="search" placeholder="بحث عن تصنيف ...">
@@ -54,7 +59,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             إلغاء
                         </button>
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+                        <button type="submit" class="btn btn-success">
                             حفظ البيانات
                         </button>
                     </div>
@@ -92,7 +97,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             إلغاء
                         </button>
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+                        <button type="submit" class="btn btn-success">
                             حفظ البيانات
                         </button>
                     </div>
@@ -111,6 +116,7 @@ export default {
     name: "CategoryComponent",
     data(){
         return {
+            loading: true,
             categoryList: [],
             search: '',
             category: {
@@ -122,6 +128,9 @@ export default {
     },
     mounted(){
         this.getCategory();
+        setTimeout(() => {
+            this.loading = false
+        }, 1000)
     },
     computed: {
         filteredItems(){
@@ -132,7 +141,7 @@ export default {
     },
     methods: {
         async getCategory(){
-            await axios.get("/api/category/list").then(res => {
+            await axios.get("/api/category/All").then(res => {
                 this.categoryList = res.data;
             })
         },
@@ -145,6 +154,7 @@ export default {
                     text: res.data.message,
                     icon: 'success',
                 });
+                document.querySelector('#addCategory .btn-close').click();
                 this.getCategory();
             })
         },
@@ -193,6 +203,7 @@ export default {
                         text: res.data.message,
                         icon: 'success',
                     });
+                    document.querySelector('#editCategory .btn-close').click();
                     this.getCategory();
                 }
             })

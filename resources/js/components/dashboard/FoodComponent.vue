@@ -1,5 +1,10 @@
 <template>
     <section class="foodList">
+        <div class="loading" v-if="loading == true">
+            <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
         <div class="table-action">
             <div class="search">
                 <input type="text" class="form-control" v-model="search" placeholder="بحث عن وجبة ...">
@@ -16,6 +21,7 @@
                         <th>صورة</th>
                         <th>اسم الوجبة</th>
                         <th>الوصف</th>
+                        <th>السعر</th>
                         <th>حالة المنيو</th>
                         <th>إجراء</th>
                     </tr>
@@ -28,6 +34,7 @@
                         </td>
                         <td>{{ food.name }}</td>
                         <td>{{ food.info }}</td>
+                        <td>{{ food.price }}</td>
                         <td>{{ food.is_active == 1 ? 'متاحة حالياً' : 'غير متاح' }}</td>
                         <td class="d-flex gap-2 justify-content-center">
                             <v-btn color="#f58328" data-bs-toggle="modal" @click="editFood(food)" data-bs-target="#editFood">
@@ -62,6 +69,10 @@
                         <div class="mb-2">
                             <label class="form-label">الوصف</label>
                             <input type="text" class="form-control" required v-model="food.info">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">السعر</label>
+                            <input type="text" class="form-control" required v-model="food.price">
                         </div>
                         <div class="mb-2">
                             <label class="form-label">الصورة</label>
@@ -110,6 +121,10 @@
                             <input type="text" class="form-control" required v-model="food.info">
                         </div>
                         <div class="mb-2">
+                            <label class="form-label">السعر</label>
+                            <input type="text" class="form-control" required v-model="food.price">
+                        </div>
+                        <div class="mb-2">
                             <label class="form-label">الصورة</label>
                             <input type="file" class="form-control" @change="onchangeImage">
                         </div>
@@ -133,7 +148,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             إلغاء
                         </button>
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                        <button type="submit" class="btn btn-success">
                             حفظ البيانات
                         </button>
                     </div>
@@ -148,17 +163,23 @@
 <script>
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
+import LeadingComponent from './LeadingComponent.vue';
 
 export default {
     name: "FoodComponent",
+    components: {
+        LeadingComponent
+    },
     data(){
         return {
+            loading: true,
             search: '',
             categoryList: [],
             foodList: [],
             food: {
                 id: '',
                 name: '',
+                price: '',
                 image: '',
                 info: '',
                 category_id: '',
@@ -170,6 +191,11 @@ export default {
     mounted(){
         this.getFood();
         this.getCategory();
+
+        setTimeout(() => {
+            this.loading = false
+        }, 1000)
+
     },
     computed: {
         filteredItems(){
@@ -223,9 +249,9 @@ export default {
             this.food.name = food.name;
             this.food.info = food.info;
             this.food.is_active = food.is_active;
+            this.food.price = food.price;
             this.food.category_id = food.category_id;
             this.category_name = food.category.name;
-            console.log(this.food);
         },
 
         // edit Food 
@@ -237,6 +263,7 @@ export default {
                         text: res.data.message,
                         icon: 'success',
                     });
+                    document.querySelector('#editFood .btn-close').click();
                     this.getFood();
                 }
             }).catch(err => {
@@ -246,29 +273,29 @@ export default {
 
         onchangeImage(event){
             this.food.image = event.target.files[0];
-            console.log(this.food.image);
         },
         addFood(){
-            document.querySelector('#addFood .btn-close').click();
-            // let config = {
-            //     headers: {"content-type": "multipart/form-data"}
-            // };
-            // let formData = new FormData();
-            // formData.append('name', this.food.name);
-            // formData.append('info', this.food.info);
-            // formData.append('image', this.food.image);
-            // formData.append('category_id', this.food.category_id);
+            let config = {
+                headers: {"content-type": "multipart/form-data"}
+            };
+            let formData = new FormData();
+            formData.append('name', this.food.name);
+            formData.append('info', this.food.info);
+            formData.append('price', this.food.price);
+            formData.append('image', this.food.image);
+            formData.append('category_id', this.food.category_id);
 
-            // axios.post('/api/food/add', formData, config).then(res => {
-            //     Swal.fire({
-            //         title: 'عملية ناجحة',
-            //         text: res.data.message,
-            //         icon: 'success',
-            //     });
-            //     this.getFood();
-            // }).catch(err => {
-            //     console.log(err)
-            // });
+            axios.post('/api/food/add', formData, config).then(res => {
+                Swal.fire({
+                    title: 'عملية ناجحة',
+                    text: res.data.message,
+                    icon: 'success',
+                });
+                document.querySelector('#addFood .btn-close').click();
+                this.getFood();
+            }).catch(err => {
+                console.log(err)
+            });
         }
     }
 }

@@ -27,6 +27,12 @@
                     <span>الوجبات</span>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link class="nav-link" :to="{name: 'contact'}" active-class="active">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>معلومات الإتصال</span>
+                </router-link>
+            </li>
         </ul>
     </sidebar>
 </template>

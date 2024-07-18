@@ -1,6 +1,6 @@
 <template>
     <footer>
-        footer
+        <p>Copyright 2024 | Made With Love by Dgytos.</p>
     </footer>
 </template>
 

@@ -13,6 +13,11 @@ class CategoryController extends Controller
         return response()->json($categoryList);
     }
 
+    public function getAllCategory(){
+        $categoryList = Category::all();
+        return response()->json($categoryList);
+    }
+
     public function addCategory(Request $request){
         $category = new Category();
         $category->name = $request->name;
@@ -27,7 +32,6 @@ class CategoryController extends Controller
     }
 
     public function updateCategory(Request $request){
-        return response()->json($request);
         $category = Category::where('id', $request->id)->first();
         $category->name = $request->name;
         $category->is_active = $request->is_active;

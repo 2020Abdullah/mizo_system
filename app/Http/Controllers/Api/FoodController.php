@@ -22,6 +22,7 @@ class FoodController extends Controller
 
         $food->name = $request->name;
         $food->info = $request->info;
+        $food->price = $request->price;
         $food->category_id  = $request->category_id;
         $food->save();
 
@@ -62,9 +63,16 @@ class FoodController extends Controller
 
         $food->name = $request->name;
         $food->info = $request->info;
+        $food->price = $request->price;
         $food->category_id = $request->category_id;
         $food->is_active = $request->is_active;
         $food->save();
         return response()->json(['status' => 'success' , 'message' => 'تم تعديل التصنيف بنجاح']);
+    }
+
+    public function getfoodList(Request $request){
+        $category_id = $request->category_id;
+        $foodListTarget = FoodList::where('category_id', $category_id)->get();
+        return response()->json($foodListTarget);
     }
 }

@@ -11,154 +11,30 @@
             <div class="menu-card">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="card-title" id="foodTitle1">اللحوم والمشويات</h3>
-                        <div class="card-food">
-                            <div class="card-food-content">
-                                <div class="image">
-                                    <img src="../../../../public/assets/images/foods/meat.png" alt="img">
+                        <div class="menu-content" v-for="(item, index) in foodList" :key="index">
+                            <h3 class="card-title" :id="'foodTitle'+ item.category_id">{{ item.category.name }}</h3>
+                            <div class="card-food">
+                                <div class="card-food-content">
+                                    <div class="image">
+                                        <img :src="'/images/'+ item.image" alt="img">
+                                    </div>
+                                    <div class="info">
+                                        <h3 class="food">{{ item.name }}</h3>
+                                        <p>{{ item.info }}</p>
+                                    </div>
                                 </div>
-                                <div class="info">
-                                    <h3 class="food">كباب</h3>
+                                <div class="card-food-price-table">
+                                    <ul>
+                                        <li>السعر</li>
+                                        <li>{{ item.price }}</li>
+                                    </ul>
                                 </div>
-                            </div>
-                            <div class="card-food-price-table">
-                                <ul>
-                                    <li>
-                                        <p>ربع</p>
-                                        <span class="price">175</span>
-                                    </li>
-                                    <li>
-                                        <p>نص</p>
-                                        <span class="price">340</span>
-                                    </li>
-                                    <li>
-                                        <p>كيلو</p>
-                                        <span class="price">680</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-food">
-                            <div class="card-food-content">
-                                <div class="image">
-                                    <img src="../../../../public/assets/images/foods/meat.png" alt="img">
-                                </div>
-                                <div class="info">
-                                    <h3 class="food">كباب</h3>
-                                    <p>150 جنيه</p>
-                                </div>
-                            </div>
-                            <div class="card-food-price-table">
-                                <ul>
-                                    <li>
-                                        <p>ربع</p>
-                                        <span class="price">175</span>
-                                    </li>
-                                    <li>
-                                        <p>نص</p>
-                                        <span class="price">340</span>
-                                    </li>
-                                    <li>
-                                        <p>كيلو</p>
-                                        <span class="price">680</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h3 class="card-title" id="foodTitle2">المحاشي</h3>
-                        <div class="card-food">
-                            <div class="card-food-content">
-                                <div class="image">
-                                    <img src="../../../../public/assets/images/foods/meat.png" alt="img">
-                                </div>
-                                <div class="info">
-                                    <h3 class="food">كباب</h3>
-                                    <p>150 جنيه</p>
-                                </div>
-                            </div>
-                            <div class="card-food-price-table">
-                                <ul>
-                                    <li>
-                                        <p>ربع</p>
-                                        <span class="price">175</span>
-                                    </li>
-                                    <li>
-                                        <p>نص</p>
-                                        <span class="price">340</span>
-                                    </li>
-                                    <li>
-                                        <p>كيلو</p>
-                                        <span class="price">680</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h3 class="card-title" id="foodTitle3">السندوتشات</h3>
-                        <div class="card-food">
-                            <div class="card-food-content">
-                                <div class="image">
-                                    <img src="../../../../public/assets/images/foods/meat.png" alt="img">
-                                </div>
-                                <div class="info">
-                                    <h3 class="food">كباب</h3>
-                                    <p>150 جنيه</p>
-                                </div>
-                            </div>
-                            <div class="card-food-price-table">
-                                <ul>
-                                    <li>
-                                        <p>ربع</p>
-                                        <span class="price">175</span>
-                                    </li>
-                                    <li>
-                                        <p>نص</p>
-                                        <span class="price">340</span>
-                                    </li>
-                                    <li>
-                                        <p>كيلو</p>
-                                        <span class="price">680</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h3 class="card-title" id="foodTitle4">السلطات</h3>
-                        <div class="card-food">
-                            <div class="card-food-content">
-                                <div class="image">
-                                    <img src="../../../../public/assets/images/foods/meat.png" alt="img">
-                                </div>
-                                <div class="info">
-                                    <h3 class="food">كباب</h3>
-                                    <p>150 جنيه</p>
-                                </div>
-                            </div>
-                            <div class="card-food-price-table">
-                                <ul>
-                                    <li>
-                                        <p>ربع</p>
-                                        <span class="price">175</span>
-                                    </li>
-                                    <li>
-                                        <p>نص</p>
-                                        <span class="price">340</span>
-                                    </li>
-                                    <li>
-                                        <p>كيلو</p>
-                                        <span class="price">680</span>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>    
     </section>
 </template>
 
@@ -169,15 +45,18 @@ export default {
         return {
             isActive: 0,
             categoryList: [],
+            foodList: [],
         }
     },
     mounted(){
         this.mycategory();
+        this.getFood();
+        this.getContact();
     },
     methods: {
         myfilter(index, id){
             this.isActive = index;
-            document.getElementById("foodTitle" + id).scrollIntoView();
+            document.getElementById("foodTitle" + id).scrollIntoView({ block: 'end',  behavior: 'smooth' });
         },
         mycategory(){
             axios.get('/api/category/list').then(response => {
@@ -186,7 +65,22 @@ export default {
             }).catch(err => {
                 console.log(err);
             });
-        }
+        },
+        async getFood(){
+            await axios.get("/api/food/list").then(res => {
+                this.foodList = res.data;
+            })
+        },
+        getContact(){
+            axios.get("/api/getContact").then(res => {
+                this.contact.company_name = res.data.contact.company_name;
+                this.contact.info = res.data.contact.info;
+                this.contact.address = res.data.contact.address;
+                this.contact.phone = res.data.contact.phone;
+                this.contact.facebook_link = res.data.contact.facebook_link;
+                this.contact.instegram_link = res.data.contact.instegram_link;
+            })
+        },
     }
 }
 </script>

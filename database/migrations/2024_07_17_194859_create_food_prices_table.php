@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('food_prices', function (Blueprint $table) {
             $table->id();
+            $table->string('quntity');
+            $table->string('price');
+            $table->foreignId('food_id')->constrained('food_lists')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
