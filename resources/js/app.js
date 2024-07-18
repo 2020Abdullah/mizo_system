@@ -13,8 +13,15 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
 // bootstrap 
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.rtl.min.css"
 import "bootstrap"
+
+// sweat alert
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+// spinner loading
+import vue3Spinner from 'vue3-spinner'
 
 const app = createApp({});
 
@@ -39,4 +46,4 @@ const vuetify = createVuetify({
 app.component('fa', FontAwesomeIcon).component('app-component', AppComponent);
 
 
-app.use(VueAxios, axios).use(vuetify).use(router).mount('#app');
+app.use(vue3Spinner).use(VueSweetalert2).use(VueAxios, axios).use(vuetify).use(router).mount('#app');

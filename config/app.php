@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 return [
 
@@ -159,6 +160,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -182,6 +185,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class
     ])->toArray(),
 
 ];

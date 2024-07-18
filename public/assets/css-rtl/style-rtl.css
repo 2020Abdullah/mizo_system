@@ -1,0 +1,109 @@
+html, body, a {
+    font-size: 1rem;
+    font-family: 'cairo', 'sans-serif';
+}
+
+.breadcrumbs-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.breadcrumbs-links {
+    display: flex;
+}
+.imagePreview {
+    position: relative;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    border-radius: 50%;
+    border: 2px solid #333;
+    overflow: hidden;
+}
+.imagePreview img {
+    width: 100%;
+    height: 100%;
+}
+.imagePreview .editImage {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.imagePreview .editImage:hover {
+    background-color: var(--bs-success);
+}
+.imagePreview .editImage .imageInput {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+}
+.imagePreview .editImage .edit-image-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    font-size: 20px;
+    display: block;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+}
+.imagePreview .editImage:hover .edit-image-btn {
+    opacity: 1;
+    background-color: #28C76F;
+}
+.sale_box {
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.sale_box .cardImage img {
+    width: 100%;
+    height: 200px;
+}
+
+.clints_box {
+    display: flex;
+    gap: 10px;
+}
+
+.card-header-action {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*
+ agnet dashboard
+*/
+
+.dashboard .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 2rem;
+}
+.dashboard .profile .image {
+    width: 150px;
+    height: 150px;
+}
+.dashboard .profile .image img {
+    width: 100%;
+    border-radius: 50%;
+}
+.card-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.header2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    padding-bottom: 1rem;
+}

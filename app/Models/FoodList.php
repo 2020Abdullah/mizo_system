@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class FoodList extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'info',
+        'image',
+        'category_id',
+        'is_active',
+    ];
+
+    public function category(){
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

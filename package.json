@@ -24,9 +24,12 @@
         "@vitejs/plugin-vue": "^5.0.5",
         "bootstrap-vue": "^2.23.1",
         "save": "^2.9.0",
+        "sweetalert2": "^11.12.2",
         "vue-axios": "^3.5.2",
         "vue-loader": "^17.3.1",
         "vue-router": "^4.0.13",
+        "vue-sweetalert2": "^5.0.11",
+        "vue3-spinner": "^0.0.17",
         "vuetify": "^3.6.12"
     }
 }

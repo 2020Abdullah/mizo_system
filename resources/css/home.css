@@ -184,6 +184,8 @@ header .bg-theme-orange {
 .card-food-content .info {
     font-size: 20px;
     font-weight: 500;
+    display: flex;
+    align-items: center;
 }
 .card-food-price-table ul {
     display: flex;

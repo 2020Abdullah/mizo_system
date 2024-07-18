@@ -19,7 +19,6 @@
                                 </div>
                                 <div class="info">
                                     <h3 class="food">كباب</h3>
-                                    <p>150 جنيه</p>
                                 </div>
                             </div>
                             <div class="card-food-price-table">
@@ -183,7 +182,7 @@ export default {
         mycategory(){
             axios.get('/api/category/list').then(response => {
                 this.categoryList = response.data;
-                console.log(this.categoryList);
+                console.log(response.data);
             }).catch(err => {
                 console.log(err);
             });

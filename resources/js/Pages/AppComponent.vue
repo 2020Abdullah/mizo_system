@@ -8,6 +8,6 @@
 
 <script>
 export default {
-    name: "AppComponent"
+    name: "AppComponent",
 }
 </script>

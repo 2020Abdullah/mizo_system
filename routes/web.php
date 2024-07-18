@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('qrCode');
 });
 
-Route::get('signUp', [AuthController::class, 'register'])->name('register');
-
+Route::get('/menu', function () {
+    return view('welcome');
+})->name('menu');
 
 Route::get('/{pathMatch}', function(){
     return view('welcome');

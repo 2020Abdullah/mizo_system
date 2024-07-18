@@ -31,7 +31,8 @@
 
 <script>
 import '../../../css/auth.css';
-import { useRouter } from 'vue-router';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 export default {
     name: "SignUpComponent",
@@ -45,11 +46,34 @@ export default {
             }
         }
     },
+    mounted(){
+        let value = localStorage.getItem('token');
+        if(value){
+            this.$router.push({ path: "/dashboard"});
+        }
+        else {
+            this.$router.push({ path: "/register"});
+        }
+    },
     methods: {
         signUp(){
-            this.axios.post("/api/signUp", this.form).then(response => {
-                console.log(response);
-            })
+            axios.post('/api/createUser', this.form).then(response => {
+                if(response.data.status == 'success'){
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('user', JSON.stringify(response.data.user));
+                    this.$router.push({ path: "/dashboard"});
+                }
+                else {
+                    Swal.fire({
+                        title: 'هذا الحساب غير موجود بالفعل لدينا',
+                        text: 'برجاء المحاولة مرة أخرى في وقت لاحق',
+                        icon: 'error',
+                    })
+                }
+
+            }).catch(err => {
+                console.log(err);
+            });
         }
     }
 }

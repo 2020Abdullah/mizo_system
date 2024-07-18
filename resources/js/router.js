@@ -3,11 +3,16 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeComponent from './Pages/HomeComponent.vue';
 import RegisterComponent from './Pages/auth/RegisterComponent.vue';
 import LoginComponent from './Pages/auth/LoginComponent.vue';
+import DashboardComponent from './Pages/DashboardComponent.vue';
+import ShowDashboard from './components/dashboard/ShowDashboard.vue';
+import CategoryComponent from './components/dashboard/CategoryComponent.vue';
+import FoodComponent from './components/dashboard/FoodComponent.vue';
 import NotFoundComponent from './Pages/NotFoundComponent.vue';
 
 const routes = [
     {
-        path: '/',
+        name: 'menu',
+        path: '/menu',
         component: HomeComponent,
     },
     {
@@ -15,8 +20,29 @@ const routes = [
         component: RegisterComponent,
     },
     {
-        path: '/signIn',
+        path: '/login',
         component: LoginComponent,
+    },
+    {
+        path: '/dashboard',
+        component: DashboardComponent,
+        children: [
+            {
+                name: 'showDashboard',
+                path: '/',
+                component: ShowDashboard
+            },
+            {
+                name: "category",
+                path: 'category',
+                component: CategoryComponent
+            },
+            {
+                name: "food",
+                path: 'food/view',
+                component: FoodComponent
+            },
+        ]
     },
     {
         path: '/:pathMatch(.*)*',
